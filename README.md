@@ -223,7 +223,7 @@ MIT — Feel free to fork, modify, and use for learning
 **Fresher learning AI & full-stack development**
 
 - **GitHub:** [github.com/merajularsh/devmate](https://github.com/merajularsh/devmate)
-- **Live:** [devmate.vercel.app](https://devmate.vercel.app)
+- **Live:** https://devmate-gamma.vercel.app/
 
 ---
 
