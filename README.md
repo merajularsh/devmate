@@ -2,7 +2,7 @@
 
 An intelligent code reviewer powered by Claude AI. Paste your code, and get **instant feedback on bugs, security issues, and improvements**.
 
-**Live:** [https://devmate-xyz123.vercel.app](https://devmate-xyz123.vercel.app)
+**Live:** https://devmate-gamma.vercel.app/
 
 ---
 
