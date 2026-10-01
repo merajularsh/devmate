@@ -1,10 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
-
 export async function POST(req: NextRequest) {
   try {
+    const secretKey = process.env.STRIPE_SECRET_KEY;
+
+    if (!secretKey) {
+      return NextResponse.json(
+        { error: "STRIPE_SECRET_KEY environment variable is not set" },
+        { status: 500 }
+      );
+    }
+
+    if (!secretKey.startsWith("sk_test_")) {
+      return NextResponse.json(
+        { error: "STRIPE_SECRET_KEY is invalid - doesn't start with sk_test_" },
+        { status: 500 }
+      );
+    }
+
+    const stripe = new Stripe(secretKey);
     const body = await req.json();
     const { priceId } = body;
 
@@ -29,10 +44,11 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (error) {
-    console.error("Checkout error:", error);
+  } catch (error: any) {
     return NextResponse.json(
-      { error: "Failed to create checkout session" },
+      { 
+        error: error?.message || "Unknown error"
+      },
       { status: 500 }
     );
   }
